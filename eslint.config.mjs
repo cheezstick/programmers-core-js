@@ -7,8 +7,16 @@ const types = {
   isObject:true,
   isArray:true,
   isNull:true,
+  isString:true,
+  isUndefined:true,
 }
 
+const lib = {
+  getNode:true,
+  attr:true,
+  css:true,
+  insertLast:true,
+}
 
 export default defineConfig([
   {
@@ -22,7 +30,9 @@ export default defineConfig([
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...types
+        ...types,
+        ...lib,
+        gsap:true
       },
     },
     rules:{
