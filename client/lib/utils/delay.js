@@ -3,6 +3,7 @@
 // call back
 
 import { getNode } from "../dom/getNode.js";
+import { isNumber, isObject } from "./type.js";
 
 function delay(callback,timeout=1000){
   setTimeout(callback,timeout);
@@ -58,18 +59,58 @@ Promise를 사용하는 이유?
 
 // promise
 
-function delayP(shouldRejected = false, timeout=1000) {
+// object mixin
+
+const defaultOptions = {
+   shouldRejected:false,
+   data:'성공',
+   errorMessage :'알 수 없는 오류',
+   timeout:1000,
+}
+
+function delayP(options) {
+
+  let config = {...defaultOptions};
+
+  if(isNumber(options)) {
+    config.timeout = options;
+  }
+
+  if(isObject(options)){
+    config = {...defaultOptions,...options};
+  }
+
+  const {shouldRejected, timeout, errorMessage:err, data} = config;
+
   return new Promise((resolve, reject)=>{
     setTimeout(()=>{
       if(!shouldRejected) {
-        resolve('성공!');
+        resolve(data);
       } else {
-        reject({message:'오류 발생!'});
+        reject({message:err});
       }
     },timeout)
   })
 
 }
+
+
+delayP({
+  data : '성공!',
+  shouldRejected : false,
+  timeout : 1000,
+  errorMessage: '오류 발생!!!'
+})
+
+
+
+
+
+
+
+
+
+
 
 
 delayP()
