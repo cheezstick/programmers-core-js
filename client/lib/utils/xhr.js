@@ -1,6 +1,6 @@
 
 
-const END_POINT = 'https://jsonplaceholder.typicode.com/users';
+const END_POINT = 'http://localhost:3000/posts';
 
 /* 
   [readyState]
@@ -166,7 +166,7 @@ const defaultOptions = {
   }
 }
 
-function xhrPromise(options = {}){
+export function xhrPromise(options = {}){
 
   const {method,url,headers,body,errorMessage:message} = {
     ...defaultOptions,
@@ -204,11 +204,11 @@ function xhrPromise(options = {}){
 }
 
 
-xhrPromise({ url:END_POINT })
-.then((res)=>{
-  console.log( res );
+// xhrPromise({ url:END_POINT })
+// .then((res)=>{
+//   console.log( res );
   
-})
+// })
 
 
 

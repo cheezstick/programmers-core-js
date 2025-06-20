@@ -10,6 +10,8 @@ export * from './insert.js';
 export * from './getNode.js';
 export * from './showAlert.js';
 export * from './endScroll.js';
+export * from './color.js';
+export * from './userList.js';
 export {default as clearContents} from './clearContents.js';
 
 
